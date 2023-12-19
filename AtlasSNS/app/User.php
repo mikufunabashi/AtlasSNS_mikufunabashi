@@ -26,4 +26,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    // 投稿フォーム
+    public function post(){
+        return $this->hasOne('App\Post');
+    }
 }

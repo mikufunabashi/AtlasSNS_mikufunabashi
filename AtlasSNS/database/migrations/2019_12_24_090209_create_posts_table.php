@@ -15,7 +15,8 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->integer('id')->autoIncrement();
-            $table->integer('user_id');
+            // ↓この記述はわかるようでわからない、”このテーブルには user_id という外部キーを追加するんだ”
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->string('post',400);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->default(DB::raw('current_timestamp on update current_timestamp'));

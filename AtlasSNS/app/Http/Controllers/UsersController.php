@@ -13,4 +13,11 @@ class UsersController extends Controller
     public function search(){
         return view('users.search');
     }
+
+    // ログイン機能？
+    public function users()
+    {
+        // ここに何か記入が必要な気がします！
+        return view('posts.index');
+    }
 }

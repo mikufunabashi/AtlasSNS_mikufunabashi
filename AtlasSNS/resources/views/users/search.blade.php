@@ -2,6 +2,6 @@
 
 @section('content')
 
-
+<h>ユーザー検索</h>
 
 @endsection
