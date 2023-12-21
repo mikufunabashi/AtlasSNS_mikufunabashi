@@ -38,34 +38,3 @@ $(document).ready(function () {
     // モーダルが表示されたときの処理を追加
   });
 });
-
-
-$(document).ready(function () {
-  // ボタンにホバー時の画像切り替えを追加
-  // $('.btn-delete').hover(
-  //   function () {
-  //     // ホバー時の画像またはアイコンのパスを指定
-  //     $(this).html('<img src="/images/trash-h.png" alt="削除"> ');
-  //   },
-  //   function () {
-  //     // 元のテキストまたはアイコンに戻す
-  //     $(this).html('<img src="/images/trash.png" alt="削除"> ');
-  //   }
-  // );
-
-  // 削除ボタンがクリックされたときの処理
-  $('.btn-delete').on('click', function () {
-    var postId = $(this).data('postid');
-    console.log(postId);
-    $('#deleteModal').show();
-
-    // 削除確認モーダル内の削除ボタンがクリックされたときの処理
-    $('#confirmDelete').on('click', function () {
-      // ここで削除の非同期処理を実装
-      // ...
-
-      // モーダルを閉じる
-      $('#deleteModal').modal('hide');
-    });
-  });
-});

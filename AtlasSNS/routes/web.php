@@ -46,7 +46,8 @@ Route::group(['middleware' => ['loginUserCheck']], function() {
   // 投稿編集のルーティング
   Route::put('/posts/{postId}', 'PostsController@update')->name('posts.update');
   Route::get('/posts', 'PostsController@index')->name('posts.index');
-
+  // 投稿削除のルーティング
+  Route::post('/post/{{$post->id}}/delete','PostsController@delete');
 
 
 

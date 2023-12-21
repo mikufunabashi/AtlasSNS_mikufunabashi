@@ -33,7 +33,8 @@
             @endif
             <!-- 削除ボタン -->
             @if(Auth::check() && $post->user->id == Auth::user()->id)
-            <a type="button" class="btn-delete" data-postid="{{ $post->id }}">
+            <!-- {{$post->id}} $postには投稿の全ての情報が入っている、この記述にすると＄postのIDだけ抽出できる -->
+            <a class="btn btn-danger" href="/post/{{$post->id}}/delete" onclick="return confirm('こちらの本を削除してもよろしいでしょうか？')"></a>
                 <img src="{{ asset('/images/trash.png') }}" alt="trash Icon">
             </a>
             @endif
@@ -63,24 +64,6 @@
             </div>
 
             <!-- 削除確認モーダル -->
-            <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="deleteModalLabel">投稿を削除しますか？</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <p>この操作は取り消せません。本当に削除しますか？</p>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-                  <button type="button" class="btn btn-danger" id="confirmDelete">削除する</button>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
     @endforeach

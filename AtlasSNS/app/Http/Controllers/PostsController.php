@@ -78,4 +78,12 @@ class PostsController extends Controller
         return redirect()->route('posts.index')->with('success', '投稿が更新されました。');
     }
 
+    // 削除ボタンを押したときの処理
+   public function delete(Post $post)
+    {
+        dd($post);
+        Post::where('post' , $post)->delete();
+        return redirect('/top');
+    }
+
 }
