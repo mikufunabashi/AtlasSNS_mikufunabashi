@@ -57,3 +57,24 @@ button {
     border: none;
     background-color: #fff;
 }
+
+.trashIcon {
+    display: inline-block;
+    /* インラインブロック要素にすることで高さや幅が自動で設定される */
+    width: 50px;
+    /* 適切な幅を指定 */
+    height: 50px;
+    /* 適切な高さを指定 */
+    background-size: cover;
+    /* 背景画像を要素にカバーさせる */
+    background-image: url('/images/trash.png');
+}
+
+.trashIcon:hover {
+    background-image: url('/images/trash-h.png');
+}
+
+.icon-text {
+    display: none;
+    /* テキストコンテンツを非表示にする */
+}

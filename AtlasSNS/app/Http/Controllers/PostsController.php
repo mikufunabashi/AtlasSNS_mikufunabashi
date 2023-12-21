@@ -79,10 +79,10 @@ class PostsController extends Controller
     }
 
     // 削除ボタンを押したときの処理
-   public function delete(Post $post)
+   public function delete($id)
     {
-        dd($post);
-        Post::where('post' , $post)->delete();
+        // POSTテーブルにある対象の$idを見つけて(find)->deleteで消す
+        Post::find($id)->delete();
         return redirect('/top');
     }
 

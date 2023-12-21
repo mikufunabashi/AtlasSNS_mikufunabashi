@@ -34,8 +34,8 @@
             <!-- 削除ボタン -->
             @if(Auth::check() && $post->user->id == Auth::user()->id)
             <!-- {{$post->id}} $postには投稿の全ての情報が入っている、この記述にすると＄postのIDだけ抽出できる -->
-            <a class="btn btn-danger" href="/post/{{$post->id}}/delete" onclick="return confirm('こちらの本を削除してもよろしいでしょうか？')"></a>
-                <img src="{{ asset('/images/trash.png') }}" alt="trash Icon">
+            <a class="trashIcon" href="/post/{{$post->id}}/delete" onclick="return confirm('こちらの本を削除してもよろしいでしょうか？')">
+                <span class="icon-text">削除</span>
             </a>
             @endif
 
@@ -65,7 +65,6 @@
 
             <!-- 削除確認モーダル -->
           </div>
-        </div>
     @endforeach
 
 @endsection

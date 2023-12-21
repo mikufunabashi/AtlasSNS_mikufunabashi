@@ -42,12 +42,13 @@ Route::group(['middleware' => ['loginUserCheck']], function() {
   Route::get('/follower-list','FollowsController@followerList');
 
   // 投稿フォームのルーティング必要？
-  Route::post('/posts','PostsController@postCreate');
+  Route::post('/post','PostsController@postCreate');
   // 投稿編集のルーティング
   Route::put('/posts/{postId}', 'PostsController@update')->name('posts.update');
   Route::get('/posts', 'PostsController@index')->name('posts.index');
   // 投稿削除のルーティング
-  Route::post('/post/{{$post->id}}/delete','PostsController@delete');
+  // {{$post->id}}はindexの方でIDを取得済みなので、ここでは何かしらのidがくるよという記述でおk
+  Route::get('/post/{id}/delete','PostsController@delete');
 
 
 
