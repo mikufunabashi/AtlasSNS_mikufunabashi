@@ -13,25 +13,9 @@ class PostsController extends Controller
     public function index()
     {
         $posts = Post::with('user')->get();
+        // dd($posts);　何かわからなくなった使う
         return view('posts.index', compact('posts'));
     }
-
-
-    // // 投稿するメソッドを記述
-    // public function postCreate(Request $request){
-    //     // createの中身の記述、
-    //     $postContent = $request->input('post');
-
-    //     // デバッグ用：取得したデータをログに出力
-    //     \Log::info('Post Content: ' . $postContent);
-
-    //     // ユーザーIDとIDを紐ずける記述
-    //     $table->user_id = $request->Auth::user();
-
-    //     // createの中身の記述、
-    //     Post::create(['post' => $request->input('post'), 'user_id' => $request->input('user_id')]);
-    //     return view('posts.index');
-    // }
 
    // PostsController
     public function postCreate(Request $request)

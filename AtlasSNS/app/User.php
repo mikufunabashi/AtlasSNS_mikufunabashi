@@ -1,4 +1,5 @@
 <?php
+// User.phpはモデルで、これを使ってuserテーブルと繋げる
 
 namespace App;
 

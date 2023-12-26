@@ -9,14 +9,14 @@
  <!-- ログイン中のユーザーアイコンを表示 -->
     @if(Auth::check())
         <div class="user-icon">
-            <img src="{{ asset('images/' . Auth::user()->icon) }}" alt="{{ Auth::user()->username }}のアイコン">
+            <img src="{{ asset('images/' . Auth::user()->images) }}">
         </div>
     @endif
 
   <form action="/post" method="post">
     @csrf
     <input type="hidden" name="user_id" value="{{ Auth::id() }}">
-    <textarea name="post_content" id="post_content" rows="4" cols="50"></textarea>
+    <textarea name="post_content" id="post_content" rows="4" cols="50" placeholder="投稿内容を入力してください。"></textarea>
     <input type="image" src="{{ asset('/images/post.png') }}"></input>
   </form>
 
@@ -25,7 +25,7 @@
             <p>{{ $post->post }}</p>
             <div class="user-icon">
               <!-- ユーザーアイコンの表示 🌟ユーザーとユーザー画像を一致させる設定をどこかに記入しないいけない-->
-              <img src="{{ asset('images/' . $post->user->icon) }}">
+              <img src="{{ asset('images/' . $post->user->images) }}">
               <span>{{ $post->user->username }}</span>
             </div>
             <p class="day">{{ $post->created_at->format('Y-m-d H:i') }}</p>
@@ -83,6 +83,3 @@
 
 <!-- Bootstrap JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-<!-- Custom Script -->
-<script src="{{ asset('/js/script.js') }}"></script>

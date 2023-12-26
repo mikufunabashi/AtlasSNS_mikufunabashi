@@ -36,7 +36,7 @@ Route::group(['middleware' => ['loginUserCheck']], function() {
 
   Route::get('/profile','UsersController@profile');
 
-  Route::get('/search','UsersController@search');
+  Route::get('/search','UsersController@user_search');
 
   Route::get('/follow-list','FollowsController@followList');
   Route::get('/follower-list','FollowsController@followerList');
@@ -49,6 +49,9 @@ Route::group(['middleware' => ['loginUserCheck']], function() {
   // 投稿削除のルーティング
   // {{$post->id}}はindexの方でIDを取得済みなので、ここでは何かしらのidがくるよという記述でおk
   Route::get('/post/{id}/delete','PostsController@delete');
+
+  // ユーザー検索
+  Route::post('/userSearch','UsersController@user_search');
 
 
 

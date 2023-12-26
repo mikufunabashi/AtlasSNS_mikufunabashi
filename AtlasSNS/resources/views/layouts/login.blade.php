@@ -29,6 +29,7 @@
                 <h1><a id='logo' href="http://127.0.0.1:8000/top"><img src="{{ asset('/images/atlas.png') }}"></a></h1>
                 <div id="side_user">
                     <div class="icon">
+                        <!-- Auth::userはログインしている人のという意味 -->
                         <p>{{ Auth::user()->username }}さん<img src="{{ asset('images/' . Auth::user()->images) }}"></p>
                         <div class="arrow-icon"></div>
                     </div>
