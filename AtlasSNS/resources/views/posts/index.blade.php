@@ -1,10 +1,10 @@
-<!-- BootstrapのCSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
 
 @extends('layouts.login')
 
+
 @section('content')
-<h2>機能を実装していきましょう。</h2>
 
  <!-- ログイン中のユーザーアイコンを表示 -->
     @if(Auth::check())
@@ -13,19 +13,23 @@
         </div>
     @endif
 
-<form action="/post" method="post">
-  @csrf
-  <input type="hidden" name="user_id" value="{{ Auth::id() }}">
-  <textarea name="post_content" id="post_content" rows="4" cols="50"></textarea>
-  <input type="image" src="{{ asset('/images/post.png') }}"></input>
-</form>
+  <form action="/post" method="post">
+    @csrf
+    <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+    <textarea name="post_content" id="post_content" rows="4" cols="50"></textarea>
+    <input type="image" src="{{ asset('/images/post.png') }}"></input>
+  </form>
 
-<!-- 編集ボタン -->
     @foreach ($posts as $post)
         <div class="post">
             <p>{{ $post->post }}</p>
+            <div class="user-icon">
+              <!-- ユーザーアイコンの表示 🌟ユーザーとユーザー画像を一致させる設定をどこかに記入しないいけない-->
+              <img src="{{ asset('images/' . $post->user->icon) }}">
+              <span>{{ $post->user->username }}</span>
+            </div>
+            <p class="day">{{ $post->created_at->format('Y-m-d H:i') }}</p>
             <!-- 編集ボタンを追加 -->
-            <!-- これを押したらモーダルが開くボタンに変える -->
             @if(Auth::check() && $post->user->id == Auth::user()->id)
             <a type="button" data-toggle="modal" data-target="#editModal{{ $post->id }}">
                 <img src="{{ asset('/images/edit.png') }}" alt="Edit Icon">
@@ -62,14 +66,23 @@
                     </div>
                 </div>
             </div>
-
-            <!-- 削除確認モーダル -->
           </div>
     @endforeach
 
+
 @endsection
 
+<!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+<!-- Popper.js -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<!-- Bootstrap JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- Custom Script -->
 <script src="{{ asset('/js/script.js') }}"></script>
