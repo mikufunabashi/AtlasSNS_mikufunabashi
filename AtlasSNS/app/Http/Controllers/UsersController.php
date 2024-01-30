@@ -37,6 +37,16 @@ class UsersController extends Controller
              $users = User::where('id', '!=', auth()->user()->id)->get();
         }
         // 3つ目の処理
-        return view('users.search',['users' => $users]);
+        return view('users.search',['users' => $users,'keyword' => $keyword]);
+    }
+
+    // フォローしているユーザーアイコンを表示する記述
+    public function showFollowedUsers()
+    {
+        // ログインしているユーザーがフォローしているユーザーを取得
+        $followedUsers = Auth::User()->follows()->get();
+        dd($follows);
+
+        return view('followed_users.index', compact('followedUsers'));
     }
 }

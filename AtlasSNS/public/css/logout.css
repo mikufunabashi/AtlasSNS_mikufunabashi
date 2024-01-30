@@ -1,10 +1,45 @@
 @charset "UTF-8";
 
-html{
+html {
     height: 100%;
 }
 
-body{
+body {
     height: 100%;
-    background: #186AC9;
+    background: linear-gradient(180deg, #1479D5, #E6DB4A);
+    width: 80%;
+    margin: 0 auto;
+    max-width: 500px;
+}
+
+header {
+    text-align: center;
+}
+
+input {
+    border-radius: 6px;
+    border: 1px solid gray;
+}
+
+.logo {
+    width: 200px;
+}
+
+.logoutSt {
+    color: #fff;
+    font-size: 40px;
+}
+
+.logoutContainer {
+    color: #fff;
+    text-align: center;
+}
+
+.link-light {
+    color: #fff;
+}
+
+.email {
+    padding: 15px;
+
 }

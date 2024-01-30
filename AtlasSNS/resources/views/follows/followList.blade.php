@@ -1,7 +1,11 @@
 @extends('layouts.login')
 
 @section('content')
-
-<h1>フォローリスト</h1>
+  @foreach ($followedUsers ?? [] as $user)
+    <div class="user-icon">
+      <img src="{{ asset('storage/'.$follow->images) }}">
+      <span>{{ $user->username }}</span>
+    </div>
+  @endforeach
 
 @endsection

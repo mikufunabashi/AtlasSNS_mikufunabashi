@@ -21,10 +21,10 @@
 </head>
 <body>
   <header>
-    <h1><img src="images/atlas.png"></h1>
-    <p>Social Network Service</p>
+    <h1><img class=logo src="images/atlas.png"></h1>
+    <p class=logoutSt>Social Network Service</p>
   </header>
-  <div id="container">
+  <div class=logoutContainer id="container">
     @yield('content')
   </div>
   <script src="JavaScriptファイルのURL"></script>

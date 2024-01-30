@@ -32,7 +32,8 @@ Route::post('/added', 'Auth\RegisterController@added');
 Route::group(['middleware' => ['loginUserCheck']], function() {
 //ログイン中のページ
 // もしかして↓これpostのルーティング？その場合getではなくpostでは？
-  Route::get('/top','PostsController@index');
+  // フォローしているユーザーの投稿のみ表示
+  Route::get('/top','PostsController@show');
 
   Route::get('/profile','UsersController@profile');
 
@@ -50,9 +51,14 @@ Route::group(['middleware' => ['loginUserCheck']], function() {
   // {{$post->id}}はindexの方でIDを取得済みなので、ここでは何かしらのidがくるよという記述でおk
   Route::get('/post/{id}/delete','PostsController@delete');
 
+
+
   // ユーザー検索
   Route::post('/userSearch','UsersController@user_search');
 
+  // フォローとフォロー解除のルーティング
+  Route::get('/follow/{userId}', 'FollowsController@follow')->name('follow');
+  Route::get('/follow/{userId}/destroy', 'FollowsController@unfollow')->name('unfollow');
 
 
   // ログアウト

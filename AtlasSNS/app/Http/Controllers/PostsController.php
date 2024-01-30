@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 use App\Post;
+use App\User;
+use Auth;
 
 class PostsController extends Controller
 {
@@ -68,6 +70,18 @@ class PostsController extends Controller
         // POSTテーブルにある対象の$idを見つけて(find)->deleteで消す
         Post::find($id)->delete();
         return redirect('/top');
+    }
+
+    // フォローしているユーザーの投稿のみ表示
+    public function show()
+    {
+    // フォローしているユーザーのIDを取得
+    $following_id = Auth::user()->follows()->pluck('following_id');
+
+    // フォローしているユーザーのidを元に投稿内容を取得
+    $posts = Post::with('user')->whereIn('user_id', $following_id)->get();
+
+    return view('posts.index', compact('posts'));
     }
 
 }
