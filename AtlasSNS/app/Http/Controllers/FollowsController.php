@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use app\User;
 use App\Follow;
+use App\Post;
+use Auth;
 
 class FollowsController extends Controller
 {
@@ -37,7 +39,15 @@ class FollowsController extends Controller
                 'following_id' => $loggedInUserId,
                 'followed_id' => $followedUserId,
             ]);
-            return redirect('/search'); // フォロー後に元のページにリダイレクト
+
+             // フォロー解除後、元のページにリダイレクト
+            if (request()->is('profile/*')) {
+            // プロフィールページからの場合
+                return redirect()->route('user.profile', ['userId' => $userId]);
+                } else {
+                // それ以外の場合（search.blade からの場合など）
+                return redirect('/search');
+                }
         }
 
     }
@@ -58,6 +68,37 @@ class FollowsController extends Controller
             ])
                 ->delete();
         }
-        return redirect('/search');
+         // フォロー解除後、元のページにリダイレクト
+            if (request()->is('profile/*')) {
+            // プロフィールページからの場合
+                return redirect()->route('user.profile', ['userId' => $userId]);
+                } else {
+                // それ以外の場合（search.blade からの場合など）
+                return redirect('/search');
+                }
     }
+
+    // フォローしている投稿内容などを表示する記述　🌟ビューも記載する
+    public function showFollowedUsers()
+    {
+        // ログインしているユーザーがフォローしているユーザーを取得
+        $followedUsers = Auth::user()->follows;
+
+        // 各投稿ごとにユーザーを取得
+        $posts = Post::with('user')->whereIn('user_id', $followedUsers->pluck('id'))->get();
+
+        return view('follows.followList', compact('followedUsers','posts'));
+    }
+
+    // フォローされている投稿内容などを表示する記述
+    public function showFollowerUsers()
+    {
+        // ログインしているユーザーがフォローされているユーザーを取得
+        $followerUsers = Auth::user()->follower;
+        // dd($followerUsers);
+        $posts = Post::with('user')->whereIn('user_id', $followerUsers->pluck('id'))->get();
+
+        return view('follows.followerList', compact('followerUsers','posts'));
+    }
+
 }

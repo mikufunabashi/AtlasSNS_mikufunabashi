@@ -76,10 +76,10 @@ class PostsController extends Controller
     public function show()
     {
     // フォローしているユーザーのIDを取得
-    $following_id = Auth::user()->follows()->pluck('following_id');
+    $following_id = Auth::user()->follows()->pluck('followed_id');
 
-    // フォローしているユーザーのidを元に投稿内容を取得
-    $posts = Post::with('user')->whereIn('user_id', $following_id)->get();
+    // フォローしているユーザーのidを元に投稿内容を取得,orWhere（）で自分の投稿も取得している
+    $posts = Post::with('user')->whereIn('user_id', $following_id)->orWhere('user_id', Auth::user()->id)->get();
 
     return view('posts.index', compact('posts'));
     }

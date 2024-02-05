@@ -40,13 +40,12 @@ class UsersController extends Controller
         return view('users.search',['users' => $users,'keyword' => $keyword]);
     }
 
-    // フォローしているユーザーアイコンを表示する記述
-    public function showFollowedUsers()
+    // ユーザープロフィールに飛ぶ記述
+    public function userProfile($userId)
     {
-        // ログインしているユーザーがフォローしているユーザーを取得
-        $followedUsers = Auth::User()->follows()->get();
-        dd($follows);
-
-        return view('followed_users.index', compact('followedUsers'));
+        // ユーザーIDを元にユーザーデータを取得
+        $user = User::find($userId);
+        return view('users.profile', compact('user'));
     }
+
 }

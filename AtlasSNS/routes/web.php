@@ -34,13 +34,16 @@ Route::group(['middleware' => ['loginUserCheck']], function() {
 // もしかして↓これpostのルーティング？その場合getではなくpostでは？
   // フォローしているユーザーの投稿のみ表示
   Route::get('/top','PostsController@show');
-
   Route::get('/profile','UsersController@profile');
 
   Route::get('/search','UsersController@user_search');
 
-  Route::get('/follow-list','FollowsController@followList');
-  Route::get('/follower-list','FollowsController@followerList');
+  // フォロー、フォロワーリスト
+  Route::get('/follow-list','FollowsController@showFollowedUsers');
+  Route::get('/follower-list','FollowsController@showFollowerUsers');
+
+  // ユーザープロフィールに飛ぶ記述
+  Route::get('/profile/{userId}','UsersController@userProfile')->name('user.profile');
 
   // 投稿フォームのルーティング必要？
   Route::post('/post','PostsController@postCreate');
