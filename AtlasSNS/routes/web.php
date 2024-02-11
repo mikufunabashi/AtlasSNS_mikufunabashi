@@ -34,7 +34,11 @@ Route::group(['middleware' => ['loginUserCheck']], function() {
 // もしかして↓これpostのルーティング？その場合getではなくpostでは？
   // フォローしているユーザーの投稿のみ表示
   Route::get('/top','PostsController@show');
-  Route::get('/profile','UsersController@profile');
+
+  // マイプロフィール
+  Route::get('/myprofile','UsersController@profile');
+  // プロフィール編集機能のルーティング
+  Route::post('/profile/update', 'UsersController@updateProfile')->name('profile.update');
 
   Route::get('/search','UsersController@user_search');
 
@@ -43,7 +47,11 @@ Route::group(['middleware' => ['loginUserCheck']], function() {
   Route::get('/follower-list','FollowsController@showFollowerUsers');
 
   // ユーザープロフィールに飛ぶ記述
-  Route::get('/profile/{userId}','UsersController@userProfile')->name('user.profile');
+  Route::get('/profile/{userId}', 'UsersController@userProfile')->name('user.profile');
+  // ユーザープロフィールでの投稿の表示
+  Route::get('/profile/{userId}/post','UsersController@profilePost');
+
+
 
   // 投稿フォームのルーティング必要？
   Route::post('/post','PostsController@postCreate');
@@ -62,6 +70,9 @@ Route::group(['middleware' => ['loginUserCheck']], function() {
   // フォローとフォロー解除のルーティング
   Route::get('/follow/{userId}', 'FollowsController@follow')->name('follow');
   Route::get('/follow/{userId}/destroy', 'FollowsController@unfollow')->name('unfollow');
+  // ユーザープロフィールのフォローとフォロー解除ルーティング、🌟一つのルーティングにif構文使ってやりたかったが失敗
+  Route::get('/user/profile/{userId}', 'FollowsController@profileFollow')->name('profile_follow');
+  Route::get('/user/profile/{userId}/destroy', 'FollowsController@profileUnfollow')->name('profile_unfollow');
 
 
   // ログアウト

@@ -39,15 +39,7 @@ class FollowsController extends Controller
                 'following_id' => $loggedInUserId,
                 'followed_id' => $followedUserId,
             ]);
-
-             // フォロー解除後、元のページにリダイレクト
-            if (request()->is('profile/*')) {
-            // プロフィールページからの場合
-                return redirect()->route('user.profile', ['userId' => $userId]);
-                } else {
-                // それ以外の場合（search.blade からの場合など）
-                return redirect('/search');
-                }
+            return back();
         }
 
     }
@@ -68,14 +60,7 @@ class FollowsController extends Controller
             ])
                 ->delete();
         }
-         // フォロー解除後、元のページにリダイレクト
-            if (request()->is('profile/*')) {
-            // プロフィールページからの場合
-                return redirect()->route('user.profile', ['userId' => $userId]);
-                } else {
-                // それ以外の場合（search.blade からの場合など）
-                return redirect('/search');
-                }
+            return back();
     }
 
     // フォローしている投稿内容などを表示する記述　🌟ビューも記載する

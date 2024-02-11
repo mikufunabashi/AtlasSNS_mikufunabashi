@@ -30,14 +30,14 @@
                 <div id="side_user">
                     <div class="icon">
                         <!-- Auth::userはログインしている人のという意味 -->
-                        <p>{{ Auth::user()->username }}さん<img src="{{ asset('images/' . Auth::user()->images) }}"></p>
+                        <p>{{ Auth::user()->username }}さん<img src="{{ asset('storage/' . ($validatedData['images'] ?? '')) }}"></p>
                         <div class="arrow-icon"></div>
                     </div>
                     <!-- 🌟/topのアコーディオンメニューだけ機能していない、今まではできていた -->
                     <div class="according-menu">
                         <ul class="kodomo">
                             <li><a class="home" href="/top">ホーム</a></li>
-                            <li><a class="profile" href="/profile">プロフィール編集</a></li>
+                            <li><a class="profile" href="/myprofile">プロフィール編集</a></li>
                             <li><a class="center" href="/logout">ログアウト</a></li>
                         </ul>
                     </div>
