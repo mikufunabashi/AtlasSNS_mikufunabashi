@@ -8,6 +8,12 @@
         <title></title>
         <link rel="stylesheet" href="{{ asset('css/reset.css') }} ">
         <link rel="stylesheet" href="{{ asset('css/style.css') }} ">
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script src="{{ asset('/js/script.js') }}"></script>
+        <!-- Bootstrap CSS 🌟これらはここに入れていいの？-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <!-- Bootstrap JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <!--スマホ,タブレット対応-->
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <!--サイトのアイコン指定-->
@@ -23,17 +29,22 @@
     </head>
     <body>
         <header>
-            <div id="head">
+            <div class="top_head">
                 <!-- トップに戻るURL間違っているかも、確認できなかった -->
                 <!-- なぜassetじゃないとできないの？ -->
-                <h1><a id='logo' href="http://127.0.0.1:8000/top"><img src="{{ asset('/images/atlas.png') }}"></a></h1>
+                <a href="http://127.0.0.1:8000/top"><img class="logo" src="{{ asset('/images/atlas.png') }}"></a>
                 <div id="side_user">
-                    <div class="icon">
                         <!-- Auth::userはログインしている人のという意味 -->
-                        <p>{{ Auth::user()->username }}さん<img src="{{ asset('storage/' . ($validatedData['images'] ?? '')) }}"></p>
-                        <div class="arrow-icon"></div>
-                    </div>
-                    <!-- 🌟/topのアコーディオンメニューだけ機能していない、今まではできていた -->
+                        <div class="user_name">{{ Auth::user()->username }}さん
+                            <div class="arrow-icon"></div>
+                            @if(Auth::user()->images)
+                                <img class="user_icon" src="{{ asset('images/' . Auth::user()->images) }}">
+                            @else
+                                <!-- デフォルトの画像または空の値を表示 -->
+                                <img class="user_icon" src="{{ asset('/images/icon1.png') }}">
+                            @endif
+                            </div>
+                        </div>
                     <div class="according-menu">
                         <ul class="kodomo">
                             <li><a class="home" href="/top">ホーム</a></li>
@@ -41,6 +52,7 @@
                             <li><a class="center" href="/logout">ログアウト</a></li>
                         </ul>
                     </div>
+                    <!-- 🌟/topのアコーディオンメニューだけ機能していない、今まではできていた -->
                 </div>
             </div>
         </header>
@@ -71,6 +83,3 @@
 
     </body>
 </html>
-
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script src="{{ asset('/js/script.js') }}"></script>

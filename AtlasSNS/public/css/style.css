@@ -6,10 +6,49 @@ body {}
 
 /* header */
 header {
+    padding: 10px;
+    height: 60px;
     background: #186AC9;
+    display: flex;
+    justify-content: space-between;
+    /* 子要素を左右に均等に配置 */
+    align-items: center;
+    /* 子要素を垂直方向に中央揃え */
 }
 
+img.logo {
+    width: 100px;
+}
+
+.top_head {
+    height: 40px;
+    width: auto;
+    display: flex;
+    vertical-align: middle;
+}
+
+#side_user {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    /* 子要素を垂直方向に中央揃え */
+}
+
+.user_name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+.user_icon {
+    width: 40px;
+    height: 40px;
+}
+
+
 .arrow-icon:after {
+    margin: 15px;
     content: "";
     display: block;
     width: 8px;
@@ -20,11 +59,6 @@ header {
     -ms-transform: rotate(135deg);
     transform: rotate(135deg);
     transition: .3s;
-    /* position: absolute;
-    right: 2%;
-    top: 0;
-    bottom: 15%;
-    margin: auto; */
 }
 
 .arrow-icon.active:after {
@@ -32,10 +66,10 @@ header {
     transition: .3s;
 }
 
-.icon {
-    display: flex;
+.arrow-icon {
+    margin: 15px;
+    line-height: 50px;
 }
-
 
 
 /* main content */
