@@ -1,14 +1,25 @@
+<!-- Bootstrap CSS 🌟これらはここに入れていいの？ -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<!-- Bootstrap JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="{{ asset('css/reset.css') }} ">
+<link rel="stylesheet" href="{{ asset('css/logout.css') }} ">
+
 @extends('layouts.logout')
 
 @section('content')
 
 <div id="clear">
-  <p>{{session('username')}}さん</p>
-  <p>ようこそ！AtlasSNSへ！</p>
+   <div class="youkoso">
+      <p>{{session('username')}}さん</p>
+      <div class="youkoso2">
+        <p>ようこそ！AtlasSNSへ！</p>
+      </div>
+  </div>
   <p>ユーザー登録が完了しました。</p>
   <p>早速ログインをしてみましょう。</p>
 
-  <p class="btn"><a href="/login">ログイン画面へ</a></p>
+  <p class="btn btn-danger"><a class="login-font" href="/login">ログイン画面へ</a></p>
 </div>
 
 @endsection

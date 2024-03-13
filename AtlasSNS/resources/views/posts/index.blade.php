@@ -7,26 +7,32 @@
 @section('content')
 
  <!-- ログイン中のユーザーアイコンを表示 -->
-    @if(Auth::check())
-        <div class="user-icon">
-            <img src="{{ asset('images/' . Auth::user()->images) }}">
-        </div>
-    @endif
+    <div class="post-top">
+            @if(Auth::user()->images)
+                <img class="user_icon" src="{{ asset('images/' . Auth::user()->images) }}">
+                @else
+                <!-- デフォルトの画像または空の値を表示 -->
+                <img class="user_icon" src="{{ asset('/images/icon1.png') }}">
+            @endif
 
-  <form action="/post" method="post">
-    @csrf
-    <input type="hidden" name="user_id" value="{{ Auth::id() }}">
-    <textarea name="post_content" id="post_content" rows="4" cols="50" placeholder="投稿内容を入力してください。"></textarea>
-    <input type="image" src="{{ asset('/images/post.png') }}"></input>
-  </form>
+    <form action="/post" method="post">
+        @csrf
+        <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+        <textarea name="post_content" id="post_content" rows="4" cols="50" placeholder="投稿内容を入力してください。"></textarea>
+        <input type="image" src="{{ asset('/images/post.png') }}"></input>
+    </form>
+  </div>
 
     @foreach ($posts as $post)
         <div class="post">
-            <p>{{ $post->post }}</p>
             <div class="user-icon">
-              <!-- ユーザーアイコンの表示 🌟ユーザーとユーザー画像を一致させる設定をどこかに記入しないいけない-->
-              <img src="{{ asset('images/' . $post->user->images) }}">
+              @if ($post->user->images)
+                 <img src="{{ asset('images/' . $post->user->images) }}">
+                 @else
+                 <img class="update-icon" src="{{ asset('images/icon1.png') }}">
+              @endif
               <span>{{ $post->user->username }}</span>
+              <p>{{ $post->post }}</p>
             </div>
             <p class="day">{{ $post->created_at->format('Y-m-d H:i') }}</p>
             <!-- 編集ボタンを追加 -->

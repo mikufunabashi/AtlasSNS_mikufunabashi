@@ -34,17 +34,19 @@
                 <!-- なぜassetじゃないとできないの？ -->
                 <a href="http://127.0.0.1:8000/top"><img class="logo" src="{{ asset('/images/atlas.png') }}"></a>
                 <div id="side_user">
-                        <!-- Auth::userはログインしている人のという意味 -->
-                        <div class="user_name">{{ Auth::user()->username }}さん
-                            <div class="arrow-icon"></div>
-                            @if(Auth::user()->images)
-                                <img class="user_icon" src="{{ asset('images/' . Auth::user()->images) }}">
+                    <!-- Auth::userはログインしている人のという意味 -->
+                    <div class="user_name">{{ Auth::user()->username }}さん
+                        <div class="arrow-icon"></div>
+                        @if(Auth::user()->images)
+                            <img class="user_icon" src="{{ asset('images/' . Auth::user()->images) }}">
                             @else
-                                <!-- デフォルトの画像または空の値を表示 -->
-                                <img class="user_icon" src="{{ asset('/images/icon1.png') }}">
-                            @endif
-                            </div>
-                        </div>
+                            <!-- デフォルトの画像または空の値を表示 -->
+                            <img class="user_icon" src="{{ asset('/images/icon1.png') }}">
+                        @endif
+                    </div>
+                </div>
+                    <!-- 🌟/topのアコーディオンメニューだけ機能していない、今まではできていた -->
+            </div>
                     <div class="according-menu">
                         <ul class="kodomo">
                             <li><a class="home" href="/top">ホーム</a></li>
@@ -52,8 +54,6 @@
                             <li><a class="center" href="/logout">ログアウト</a></li>
                         </ul>
                     </div>
-                    <!-- 🌟/topのアコーディオンメニューだけ機能していない、今まではできていた -->
-                </div>
             </div>
         </header>
         <div id="row">
@@ -62,19 +62,25 @@
             </div >
             <div id="side-bar">
                 <div id="confirm">
-                    <p>〇〇さんの</p>
-                    <div>
-                    <p>フォロー数</p>
-                    <p>{{ Auth::user()->followingCount() }}名</p>
+                    <p>{{ Auth::user()->username }}さんの</p>
+                    <div class="follow-count">
+                        <p>フォロー数</p>
+                        <p class="count">{{ Auth::user()->followingCount() }}名</p>
                     </div>
-                    <p class="btn"><a href="/follow-list">フォローリスト</a></p>
-                    <div>
-                    <p>フォロワー数</p>
-                    <p>{{ Auth::user()->followerCount() }}名</p>
+                    <div class="count-btn">
+                        <a href="/follow-list" ctype="button" class="btn btn-primary">フォローリスト</a>
                     </div>
-                    <p class="btn"><a href="/follower-list">フォロワーリスト</a></p>
+                    <div class="follow-count">
+                        <p>フォロワー数</p>
+                        <p class="count">{{ Auth::user()->followerCount() }}名</p>
+                    </div>
+                    <div class="count-btn">
+                        <a href="/follower-list" type="button" class="btn btn-primary">フォロワーリスト</a>
+                    </div>
                 </div>
-                <p class="btn"><a href="/search">ユーザー検索</a></p>
+                <div class="search-btn">
+                    <a href="/search" type="button" class="btn btn-primary">ユーザー検索</a>
+                </div>
             </div>
         </div>
         <footer>

@@ -1,18 +1,32 @@
 @charset "UTF-8";
 
 html {
-    height: 100%;
+    /* height: 100%; */
 }
 
 body {
-    height: 100%;
+    /* height: 100%; */
     background: linear-gradient(180deg, #1479D5, #E6DB4A);
-    width: 80%;
+    /* width: 80%;
     margin: 0 auto;
-    max-width: 500px;
+    max-width: 500px; */
 }
 
-header {
+.top-outer {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.top-inner {
+    max-width: 500px;
+    /* 必要に応じて適切な幅を指定 */
     text-align: center;
 }
 
@@ -31,15 +45,74 @@ input {
 }
 
 .logoutContainer {
+    margin: 50px;
+    background-color: rgba(128, 128, 128, 0.4);
+    border-radius: 10px;
+    /* 角を丸くする */
+    padding: 20px 40px;
+    /* 内側の余白 */
     color: #fff;
     text-align: center;
 }
 
-.link-light {
-    color: #fff;
+.form-top {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; 縦方向中央*/
+    align-items: center;
+    height: 400px;
+    /* ログインフォーム全体の高さを親要素に合わせる */
+}
+
+.youkoso {
+    margin: 20px;
+    font-size: 25px;
+}
+
+.youkoso2 {
+    font-size: 20px;
+}
+
+.small1 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    text-align: left;
 }
 
 .email {
     padding: 15px;
+}
 
+.form-input {
+    width: 300px;
+    height: 40px;
+    border-color: #000;
+}
+
+.top-btn {
+    float: right;
+    padding: 15px;
+}
+
+.link-light {
+    clear: both;
+    margin-top: 10px;
+}
+
+.user-link {
+    color: #fff;
+}
+
+/* ユーザー登録画面 */
+.form-top1 {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; 縦方向中央*/
+    align-items: center;
+    height: 550px;
+    /* ログインフォーム全体の高さを親要素に合わせる */
+}
+
+.login-font {
+    color: #fff;
 }

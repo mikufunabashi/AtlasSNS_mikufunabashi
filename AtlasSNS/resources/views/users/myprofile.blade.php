@@ -5,6 +5,15 @@
 <h1>【ログインユーザープロフィール】</h1>
 <div class="container">
     <div class="update">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         {!! Form::open(['url' => '/profile/update', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
         @csrf
         {{Form::hidden('id',Auth::user()->id)}}

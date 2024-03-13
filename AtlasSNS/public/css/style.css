@@ -7,7 +7,7 @@ body {}
 /* header */
 header {
     padding: 10px;
-    height: 60px;
+    height: 80px;
     background: #186AC9;
     display: flex;
     justify-content: space-between;
@@ -17,19 +17,18 @@ header {
 }
 
 img.logo {
-    width: 100px;
+    width: 130px;
 }
 
 .top_head {
-    height: 40px;
-    width: auto;
+    height: 60px;
     display: flex;
     vertical-align: middle;
 }
 
 #side_user {
     display: flex;
-    justify-content: flex-start;
+    margin: 0 0 0 auto;
     align-items: center;
     /* 子要素を垂直方向に中央揃え */
 }
@@ -71,6 +70,82 @@ img.logo {
     line-height: 50px;
 }
 
+.according-menu {
+    background-color: white;
+    max-height: 300px;
+    max-width: 25%;
+    /* 初期状態では非表示 */
+    overflow: hidden;
+    /* 非表示の部分を隠す */
+    float: right;
+    position: absolute;
+    /* アコーディオンメニューを絶対位置指定 */
+    top: 80px;
+    right: 0;
+    /* サイドバーの右端に配置 */
+    z-index: 2;
+    /* スタッキングレベルを設定 */
+    /* transition: max-height 0.3s ease; */
+    /* アニメーションを設定 */
+    padding: 20px;
+    /* 項目の内側に余白を設定 */
+    text-align: center;
+    /* 文字を中央に配置 */
+}
+
+.according-menu.active {
+    max-height: 300px;
+    max-width: 100%;
+    /* 開いた時に最大の高さを設定 */
+}
+
+/* サイドバーのレイアウト */
+#side-bar {
+    position: relative;
+    /* ポジションを設定 */
+    z-index: 1;
+    /* スタッキングレベルを設定 */
+    flex: 0 0 25%;
+    margin: 0 0 0 auto;
+    border-left: 1px solid #727272;
+}
+
+#confirm {
+    margin: 10%;
+}
+
+#confirm p {
+    margin-bottom: 20px;
+}
+
+.follow-count {
+    display: flex;
+}
+
+.count {
+    margin-right: 40%;
+    margin-left: auto;
+}
+
+.count-btn {
+    text-align: right;
+    margin-bottom: 40px;
+}
+
+.count-btn .btn {
+    width: 160px;
+}
+
+.search-btn {
+    text-align: center;
+    margin-top: 50px;
+    border-top: 2px solid #ccc;
+}
+
+.search-btn .btn {
+    margin-top: 40px;
+}
+
 
 /* main content */
 #row {
@@ -79,12 +154,7 @@ img.logo {
 }
 
 #container {
-    flex: 0 0 80%;
-}
-
-#side-bar {
-    flex: 0 0 19%;
-    border-left: 1px solid #727272;
+    flex: 0 0 75%;
 }
 
 button {
@@ -111,4 +181,9 @@ button {
 .icon-text {
     display: none;
     /* テキストコンテンツを非表示にする */
+}
+
+/* postのcss */
+.post-top {
+    height: 500px;
 }
