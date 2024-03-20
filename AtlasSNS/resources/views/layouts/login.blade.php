@@ -36,7 +36,15 @@
                 <div id="side_user">
                     <!-- Auth::userはログインしている人のという意味 -->
                     <div class="user_name">{{ Auth::user()->username }}さん
-                        <div class="arrow-icon"></div>
+                        <div class="arrow-icon">
+                            <div class="according-menu">
+                                <ul class="kodomo">
+                                    <li><a href="/top">ホーム</a></li>
+                                    <li><a href="/myprofile">プロフィール編集</a></li>
+                                    <li><a href="/logout">ログアウト</a></li>
+                                </ul>
+                            </div>
+                        </div>
                         @if(Auth::user()->images)
                             <img class="user_icon" src="{{ asset('images/' . Auth::user()->images) }}">
                             @else
@@ -46,14 +54,6 @@
                     </div>
                 </div>
                     <!-- 🌟/topのアコーディオンメニューだけ機能していない、今まではできていた -->
-            </div>
-                    <div class="according-menu">
-                        <ul class="kodomo">
-                            <li><a class="home" href="/top">ホーム</a></li>
-                            <li><a class="profile" href="/myprofile">プロフィール編集</a></li>
-                            <li><a class="center" href="/logout">ログアウト</a></li>
-                        </ul>
-                    </div>
             </div>
         </header>
         <div id="row">
