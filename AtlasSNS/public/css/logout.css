@@ -109,10 +109,17 @@ input {
     flex-direction: column;
     /* justify-content: center; 縦方向中央*/
     align-items: center;
-    height: 550px;
-    /* ログインフォーム全体の高さを親要素に合わせる */
 }
 
 .login-font {
     color: #fff;
+}
+
+/* ユーザー登録完了画面 */
+.clear-p p {
+    margin-top: 5px;
+}
+
+.clear-btn {
+    margin-top: 20px;
 }

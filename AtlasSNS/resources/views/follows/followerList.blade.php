@@ -2,31 +2,40 @@
 
 @section('content')
     <!-- フォローしている人のアイコン一覧 -->
-<div class="">
-    <h1>[ フォローユーザーアイコン一覧 ]</h1>
-    <div class="user-icon">
-        @foreach ($followerUsers as $user)
-            <div>
-                <a href="{{ route('user.profile', ['userId' => $user->id]) }}">
-                  <img src="{{ asset('images/' . $user->images) }}" alt="フォロワーアイコン">
-                </a>
-            </div>
-        @endforeach
+    <div class="follow-icon">
+        <h1>フォロワーリスト</h1>
+        <div class="user-icon1">
+            @foreach ($followerUsers as $user)
+                <div class="user-icon2">
+                    <a href="{{ route('user.profile', ['userId' => $user->id]) }}">
+                    @if ($user->images)
+                        <img src="{{ asset('images/' . $user->images) }}" alt="フォローアイコン">
+                        @else
+                        <img src="{{ asset('images/icon1.png') }}">
+                        @endif
+                    </a>
+                </div>
+            @endforeach
+        </div>
     </div>
-</div>
 
-<div class="">
-    <h1>[ フォロワーリスト ]</h1>
-    <div class="user-icon">
-        @foreach ($posts as $post)
-            <div>
-                <a><img src="{{ asset('images/' . $post->user->images) }}" alt="フォロワーアイコン"></a>
-                <p>ユーザー名: {{ $post->user->username }}</p>
-                <p>投稿内容: {{ $post->post }}</p>
-                <p>投稿日時: {{ $post->created_at }}</p>
+    <div class="">
+        @foreach ($posts->sortByDesc('created_at') as $post)
+            <div class="post-all">
+                <div class="user-icon">
+                    @if ($post->user->images)
+                        <a><img src="{{ asset('images/' . $post->user->images) }}" alt="投稿者のアイコン"></a>
+                        @else
+                        <a><img src="{{ asset('images/icon1.png') }}"></a>
+                    @endif
+                </div>
+                <div class="post-name">
+                    <span class="post-username">{{ $post->user->username }}</span>
+                    <p style="white-space:pre-wrap;">{{ $post->post }}</p>
+                </div>
+                <p class="post-other">{{ $post->created_at->format('Y-m-d H:i') }}</p>
             </div>
         @endforeach
     </div>
-</div>
 
 @endsection

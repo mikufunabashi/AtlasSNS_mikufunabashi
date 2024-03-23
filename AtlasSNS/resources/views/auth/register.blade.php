@@ -3,7 +3,6 @@
 <!-- Bootstrap JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="{{ asset('css/reset.css') }} ">
-<link rel="stylesheet" href="{{ asset('css/logout.css') }} ">
 
 @extends('layouts.logout')
 
@@ -47,25 +46,25 @@
   @endif
 
   <div class="email">
-    <p class="small1">user name</p>
+    <p class="small1">ユーザー名</p>
     {{ Form::label('ユーザー名') }}
     {{ Form::text('username',null,['class' => 'form-input']) }}
   </div>
 
   <div class="email">
-    <p class="small1">mail address</p>
+    <p class="small1">メールアドレス</p>
     {{ Form::label('メールアドレス') }}
     {{ Form::text('mail',null,['class' => 'form-input']) }}
   </div>
 
   <div class="email">
-    <p class="small1">password</p>
+    <p class="small1">パスワード</p>
     <label for="password"></label>
     <input id="password" type="password" name="password" class="form-input">
   </div>
 
   <div class="email">
-    <p class="small1">password confirmation</p>
+    <p class="small1">パスワード確認</p>
     <label for="password_confirmation"></label>
     <input id="password_confirmation" type="password" name="password_confirmation" class="form-input">
   </div>

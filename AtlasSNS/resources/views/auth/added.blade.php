@@ -16,10 +16,13 @@
         <p>ようこそ！AtlasSNSへ！</p>
       </div>
   </div>
-  <p>ユーザー登録が完了しました。</p>
-  <p>早速ログインをしてみましょう。</p>
-
-  <p class="btn btn-danger"><a class="login-font" href="/login">ログイン画面へ</a></p>
+  <div class="clear-p">
+    <p>ユーザー登録が完了しました。</p>
+    <p>早速ログインをしてみましょう。</p>
+  </div>
+  <div class="clear-btn">
+    <p class="btn btn-danger"><a class="login-font" href="/login">ログイン画面へ</a></p>
+  </div>
 </div>
 
 @endsection

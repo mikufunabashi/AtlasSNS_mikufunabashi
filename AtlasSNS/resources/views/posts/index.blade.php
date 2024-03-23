@@ -23,7 +23,7 @@
         </form>
     </div>
 
-    @foreach ($posts as $post)
+    @foreach ($posts->sortByDesc('created_at') as $post)
         <div class="post-all">
             <div class="user-icon">
               @if ($post->user->images)
@@ -34,7 +34,7 @@
             </div>
             <div class="post-name">
                 <span class="post-username">{{ $post->user->username }}</span>
-                <p>{{ $post->post }}</p>
+                <p style="white-space:pre-wrap;">{{ $post->post }}</p>
             </div>
             <div class="post-other">
                 <p class="day">{{ $post->created_at->format('Y-m-d H:i') }}</p>
@@ -42,7 +42,7 @@
                 <div class="post-btn">
                     @if(Auth::check() && $post->user->id == Auth::user()->id)
                     <a type="button" data-toggle="modal" data-target="#editModal{{ $post->id }}">
-                        <img src="{{ asset('/images/edit.png') }}" alt="Edit Icon">
+                      <img src="{{ asset('/images/edit.png') }}" alt="Edit Icon">
                     </a>
                     @endif
                     <!-- 削除ボタン -->
@@ -57,24 +57,20 @@
         </div>
 
             <!-- 編集モーダルの記述 -->
-            <div class="modal fade" id="editModal{{ $post->id }}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal fade" id="editModal{{ $post->id }}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                        <div class="modal-header">
-                          <!-- ↓閉じる×マークの記述。不要なら削除 -->
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
+                        <div class="modal-body1">
                             <!-- 編集フォームの内容をここに追加 -->
                             <form action="{{ route('posts.update', $post->id) }}" method="post">
                                 @csrf
                                 @method('PUT')
                                 <textarea name="post_content" id="post_content_modal" rows="4" cols="50">{{ $post->post }}</textarea>
-                                <button type="submit" id="updateButton">
-                                  <img src="{{ asset('/images/edit.png') }}" alt="Edit Icon" style="cursor: pointer;">
-                                </button>
+                                <div class="updateButton">
+                                    <button type="submit">
+                                    <img src="{{ asset('/images/edit.png') }}" alt="Edit Icon" style="cursor: pointer;">
+                                    </button>
+                                </div>
                             </form>
                         </div>
                     </div>

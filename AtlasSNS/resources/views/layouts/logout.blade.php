@@ -6,6 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="description" content="ページの内容を表す文章" />
   <title></title>
+  <!-- Bootstrap CSS 🌟これらはここに入れていいの？-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Bootstrap JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="{{ asset('css/reset.css') }} ">
   <link rel="stylesheet" href="{{ asset('css/logout.css') }} ">
   <!--スマホ,タブレット対応-->
