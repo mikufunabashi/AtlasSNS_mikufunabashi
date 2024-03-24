@@ -9,7 +9,7 @@
 
 @section('content')
   <div class="search-area">
-    <form action="/userSearch" method="post">
+    <form action="/search" method="post">
         @csrf
         <input type="text" name="keyword" class="form" placeholder="ユーザー名">
         <button  class="search-btn1" type="submit">
@@ -17,7 +17,7 @@
         </button>
     </form>
     <!-- 検索ワードの表示 -->
-    @if(isset($keyword))
+    @if (!empty($keyword))
       <p class="searchWord">検索ワード: {{ $keyword }}</p>
     @endif
   </div>

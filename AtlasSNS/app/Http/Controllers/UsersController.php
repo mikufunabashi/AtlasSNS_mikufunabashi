@@ -14,7 +14,20 @@ class UsersController extends Controller
         return view('users.myprofile');
     }
     public function search(){
-        return view('users.search');
+        // 以下の記述でユーザー検索ボタンを押した時すでに、空の検索をかけていてそこからユーザー全てを表示している記述
+        // ユーザーをすべて取得
+        $users = User::where('id', '!=', auth()->user()->id)->get();
+
+        // 検索ワードの初期化
+        $keyword = '';
+
+        // 検索結果が空の場合検索ワードを表示
+        $searchWord = '';
+        if (!$users->isEmpty()) {
+        $searchWord = $keyword;
+        }
+
+         return view('users.search', ['users' => $users, 'keyword' => $keyword]);
     }
 
     // ログイン機能？
@@ -73,6 +86,7 @@ class UsersController extends Controller
 
         // 画像のパスを初期化
         // $images = 'icon1.png';
+
 
         if ($request->hasFile('images')) {
             // 画像がアップロードされている場合は、保存処理を行う

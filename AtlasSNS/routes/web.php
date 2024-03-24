@@ -40,7 +40,6 @@ Route::group(['middleware' => ['loginUserCheck']], function() {
   // プロフィール編集機能のルーティング
   Route::post('/profile/update', 'UsersController@updateProfile')->name('profile.update');
 
-  Route::get('/search','UsersController@user_search');
 
   // フォロー、フォロワーリスト
   Route::get('/follow-list','FollowsController@showFollowedUsers');
@@ -63,9 +62,9 @@ Route::group(['middleware' => ['loginUserCheck']], function() {
   Route::get('/post/{id}/delete','PostsController@delete');
 
 
-
   // ユーザー検索
-  Route::post('/userSearch','UsersController@user_search');
+  Route::post('/search','UsersController@user_search');
+  Route::get('/search','UsersController@search');
 
   // フォローとフォロー解除のルーティング
   Route::get('/follow/{userId}', 'FollowsController@follow')->name('follow');
