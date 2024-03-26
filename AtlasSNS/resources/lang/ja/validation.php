@@ -151,6 +151,7 @@ return [
         'password'=>'パスワード',
         'password_confirmation'=>'パスワード確認',
         'post_content'=>'投稿内容',
+        'edit_post_content'=>'編集内容',
     ],
 
 ];

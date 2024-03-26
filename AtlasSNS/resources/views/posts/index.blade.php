@@ -5,7 +5,9 @@
 
 
 @section('content')
-
+@error('post_content')
+    <div class="alert alert-danger">{{ $message }}</div>
+@enderror
  <!-- ログイン中のユーザーアイコンを表示 -->
     <div class="post-top">
             @if(Auth::user()->images)
@@ -19,9 +21,6 @@
             @csrf
             <input type="hidden" name="user_id" value="{{ Auth::id() }}">
             <textarea name="post_content" id="post_content" rows="3" cols="50" placeholder="投稿内容を入力してください。"></textarea>
-            @error('post_content')
-                <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
             <input type="image" src="{{ asset('/images/post.png') }}"></input>
         </form>
     </div>
@@ -68,6 +67,9 @@
                             <form action="{{ route('posts.update', $post->id) }}" method="post">
                                 @csrf
                                 @method('PUT')
+                                @error('edit_post_content')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                                 <textarea name="post_content" id="post_content_modal" rows="4" cols="50">{{ $post->post }}</textarea>
                                 <div class="updateButton">
                                     <button type="submit">
@@ -75,9 +77,6 @@
                                     </button>
                                 </div>
                             </form>
-                            @error('edit_post_content')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
                         </div>
                     </div>
                 </div>
