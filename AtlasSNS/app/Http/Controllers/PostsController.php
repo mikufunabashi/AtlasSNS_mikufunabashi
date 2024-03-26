@@ -32,21 +32,25 @@ class PostsController extends Controller
 
         // バリデーションエラーがある場合
         if ($validator->fails()) {
-        // エラーメッセージ取得
-        $errors = $validator->errors();
+            // エラーメッセージ取得
+            $errors = $validator->errors();
 
-        // エラーがある場合の処理（エラーメッセージの表示など）
-        return view('posts.index')->withErrors($errors);
+            // エラーがある場合の処理（エラーメッセージの表示など）
+            return back()->withErrors($errors)->withInput();
         } else {
-        // バリデーション成功の場合の処理
-        $userId = $request->user()->id;
+            // バリデーション成功の場合の処理
+            $userId = $request->user()->id;
 
-        Post::create([
-            'post' => $request->input('post_content'),
-            'user_id' => $userId,
-        ]);
+            Post::create([
+                'post' => $request->input('post_content'),
+                'user_id' => $userId,
+            ]);
 
-        return redirect('/top');
+            // 投稿を取得
+            $posts = Post::all();
+
+            // 投稿をビューに渡す
+            return back();
         }
     }
 
@@ -54,15 +58,26 @@ class PostsController extends Controller
     public function update(Request $request, $postId)
     {
         $request->validate([
-            'post_content' => 'required|string|max:150',
+            'edit_post_content' => 'required|string|min:1|max:150',
         ]);
 
         $post = Post::find($postId);
         $post->post = $request->input('post_content');
         $post->save();
 
+        // モーダル内でのエラーメッセージ表示用のビューを返す
+        if ($request->has('from_modal')) {
+            return response()->json(['errors' => ['edit_post_content' => '投稿の更新が失敗しました。']], 422);
+        }
+
+        // 通常のリクエストの場合は、投稿一覧ページにリダイレクトする
         return redirect()->route('posts.index')->with('success', '投稿が更新されました。');
     }
+
+
+
+
+
 
     // 削除ボタンを押したときの処理
    public function delete($id)

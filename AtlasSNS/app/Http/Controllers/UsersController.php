@@ -71,10 +71,9 @@ class UsersController extends Controller
     }
 
     // プロフィール編集機能の記
-
     public function updateProfile(Request $request)
     {
-    // バリデーションの実行
+        // バリデーションの実行
         $validatedData = $request->validate([
             'username' => 'required|max:12|min:2',
             'mail' => 'required|max:40|min:5|email|unique:users,mail,' . auth()->id(),
@@ -84,41 +83,75 @@ class UsersController extends Controller
             'images' => 'nullable|image|mimes:jpg,png,bmp,gif,svg',
         ]);
 
-        // 画像のパスを初期化
-        // $images = 'icon1.png';
-
+        // 画像のパスを初期化せず、現在の画像パスを保持する
+        $user = auth()->user();
+        $images = $user->images;
 
         if ($request->hasFile('images')) {
-            // 画像がアップロードされている場合は、保存処理を行う
             $filename = $request->file('images')->getClientOriginalName();
-            // アップロードされた画像を public/images ディレクトリに保存する
             $request->file('images')->move(public_path('images'), $filename);
-            // 保存した画像のファイル名をデータベースに保存
-            $validatedData['images'] = $filename;
-        } else {
-            // 画像がアップロードされなかった場合は、データベースに保存されたパスはそのまま利用される
-            $validatedData['images'] = ''; // または null; とすることもできます
+            $images = $filename;
         }
 
         // ユーザー情報を更新する
-        $id = auth()->id();
-        $username = $validatedData['username'];
-        $mail = $validatedData['mail'];
-        $password = Hash::make($validatedData['password']);
-        $bio = $validatedData['bio'];
-        $images = $validatedData['images']; // 画像のパス
+        $user->username = $validatedData['username'];
+        $user->mail = $validatedData['mail'];
+        $user->password = Hash::make($validatedData['password']);
+        $user->bio = $validatedData['bio'];
+        $user->images = $images; // 更新後の画像情報
 
-        if (User::where('id', $id)->update([
-            'username' => $username,
-            'mail' => $mail,
-            'password' => $password,
-            'bio' => $bio,
-            'images' => $images
-        ])) {
+        if ($user->save()) {
             return redirect('/top')->with('success', 'プロフィールが更新されました');
         } else {
             return redirect('/top')->with('error', 'プロフィールの更新に失敗しました');
         }
-        dd($images);
     }
+
+
+
+//     public function updateProfile(Request $request)
+//     {
+//         $validatedData = $request->validate([
+//             'username' => 'required|max:12|min:2',
+//             'mail' => 'required|max:40|min:5|email|unique:users,mail,' . auth()->id(),
+//             'password' => 'required|max:20|min:8|alpha_num|confirmed',
+//             'password_confirmation' => 'required|max:20|min:8|alpha_num',
+//             'bio' => 'nullable|max:150',
+//             'images' => 'nullable|image|mimes:jpg,png,bmp,gif,svg',
+//         ]);
+
+
+//         if ($request->hasFile('images')) {
+//             // 画像がアップロードされている場合は、保存処理を行う
+//             $filename = $request->file('images')->getClientOriginalName();
+//             // アップロードされた画像を public/images ディレクトリに保存する
+//             $request->file('images')->move(public_path('images'), $filename);
+//             // 保存した画像のファイル名をデータベースに保存
+//             $validatedData['images'] = $filename;
+//         } else {
+//             // 画像がアップロードされなかった場合は、データベースに保存されたパスはそのまま利用される
+//             $validatedData['images'] = ''; // または null; とすることもできます
+//         }
+
+//         // ユーザー情報を更新する
+//         $id = auth()->id();
+//         $username = $validatedData['username'];
+//         $mail = $validatedData['mail'];
+//         $password = Hash::make($validatedData['password']);
+//         $bio = $validatedData['bio'];
+//         $images = $validatedData['images']; // 画像のパス
+
+//         if (User::where('id', $id)->update([
+//             'username' => $username,
+//             'mail' => $mail,
+//             'password' => $password,
+//             'bio' => $bio,
+//             'images' => $images
+//         ])) {
+//             return redirect('/top')->with('success', 'プロフィールが更新されました');
+//         } else {
+//             return redirect('/top')->with('error', 'プロフィールの更新に失敗しました');
+//         }
+//         dd($images);
+//     }
 }

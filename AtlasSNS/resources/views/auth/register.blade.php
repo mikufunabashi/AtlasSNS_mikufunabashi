@@ -47,13 +47,11 @@
 
   <div class="email">
     <p class="small1">ユーザー名</p>
-    {{ Form::label('ユーザー名') }}
     {{ Form::text('username',null,['class' => 'form-input']) }}
   </div>
 
   <div class="email">
     <p class="small1">メールアドレス</p>
-    {{ Form::label('メールアドレス') }}
     {{ Form::text('mail',null,['class' => 'form-input']) }}
   </div>
 

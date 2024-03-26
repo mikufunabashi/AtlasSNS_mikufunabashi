@@ -19,6 +19,9 @@
             @csrf
             <input type="hidden" name="user_id" value="{{ Auth::id() }}">
             <textarea name="post_content" id="post_content" rows="3" cols="50" placeholder="投稿内容を入力してください。"></textarea>
+            @error('post_content')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
             <input type="image" src="{{ asset('/images/post.png') }}"></input>
         </form>
     </div>
@@ -72,12 +75,14 @@
                                     </button>
                                 </div>
                             </form>
+                            @error('edit_post_content')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                 </div>
             </div>
     @endforeach
-
 
 @endsection
 

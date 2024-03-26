@@ -150,6 +150,7 @@ return [
         'mail'=>'メール',
         'password'=>'パスワード',
         'password_confirmation'=>'パスワード確認',
+        'post_content'=>'投稿内容',
     ],
 
 ];

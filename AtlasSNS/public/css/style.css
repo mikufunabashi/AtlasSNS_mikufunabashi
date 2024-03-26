@@ -468,8 +468,16 @@ input[type="file"] {
 
 /* ユーザー検索画面 */
 .search-area {
+    display: flex;
     padding: 40px 0px 40px 80px;
     border-bottom: solid 5px #ccc;
+}
+
+.searchWord {
+    margin-left: 500px;
+    font-size: 25px;
+    display: flex;
+    align-items: center;
 }
 
 .search-area form {
