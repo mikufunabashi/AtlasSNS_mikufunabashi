@@ -62,7 +62,7 @@ class PostsController extends Controller
         ]);
 
         $post = Post::find($postId);
-        $post->post = $request->input('post_content');
+        $post->post = $request->input('edit_post_content');
         $post->save();
 
         // モーダル内でのエラーメッセージ表示用のビューを返す
@@ -71,7 +71,7 @@ class PostsController extends Controller
         }
 
         // 通常のリクエストの場合は、投稿一覧ページにリダイレクトする
-        return redirect()->route('posts.index')->with('success', '投稿が更新されました。');
+        return back();
     }
 
 

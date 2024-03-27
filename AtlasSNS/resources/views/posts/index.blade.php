@@ -70,7 +70,7 @@
                                 @error('edit_post_content')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
-                                <textarea name="post_content" id="post_content_modal" rows="4" cols="50">{{ $post->post }}</textarea>
+                                <textarea name="edit_post_content" id="post_content_modal" rows="4" cols="50">{{ $post->post }}</textarea>
                                 <div class="updateButton">
                                     <button type="submit">
                                     <img src="{{ asset('/images/edit.png') }}" alt="Edit Icon" style="cursor: pointer;">

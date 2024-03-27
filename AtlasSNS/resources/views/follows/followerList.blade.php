@@ -23,11 +23,13 @@
         @foreach ($posts->sortByDesc('created_at') as $post)
             <div class="post-all">
                 <div class="user-icon">
-                    @if ($post->user->images)
-                        <a><img src="{{ asset('images/' . $post->user->images) }}" alt="投稿者のアイコン"></a>
-                        @else
-                        <a><img src="{{ asset('images/icon1.png') }}"></a>
-                    @endif
+                    <a class="icon-url" href="{{  route('user.profile', ['userId' => $post->user->id]) }}">
+                        @if ($post->user->images)
+                            <img src="{{ asset('images/' . $post->user->images) }}" alt="投稿者のアイコン">
+                            @else
+                            <img src="{{ asset('images/icon1.png') }}">
+                        @endif
+                    </a>
                 </div>
                 <div class="post-name">
                     <span class="post-username">{{ $post->user->username }}</span>
