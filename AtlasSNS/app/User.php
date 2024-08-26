@@ -34,9 +34,11 @@ class User extends Authenticatable
     }
 
     // userAとuserBをつなげるリレーションを２つ　🌟時間ある時読み解く
+    // メソッド
     public function follows()
     {
         return $this->belongsToMany('App\User', 'follows', 'following_id', 'followed_id');
+        // 順番大事、引数
     }
     public function follower()
     {
